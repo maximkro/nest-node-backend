@@ -1,7 +1,12 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
+import { User } from "./users/users.model";
 import { UsersModule } from './users/users.module';
+import { RolesModule } from './roles/roles.module';
+import { Role } from "./roles/roles.model";
+import { UserRoles } from "./roles/user-roles.model";
+import { AuthModule } from './auth/auth.module';
 
 @Module({
     controllers: [],
@@ -18,10 +23,12 @@ import { UsersModule } from './users/users.module';
             username: process.env.POSTGRESS_USER,
             password: process.env.POSTGRESS_PASSWORD,
             database: process.env.POSTGRESS_DB,
-            models: [],
+            models: [User, Role, UserRoles],
             autoLoadModels: true // auto creates tables based on given models
         }),
         UsersModule,
+        RolesModule,
+        AuthModule,
 
     ]
 })

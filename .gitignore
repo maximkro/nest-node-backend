@@ -39,3 +39,4 @@ infos.txt
 .env
 .development.env
 .production.env
+.package-lock.json
